@@ -63,15 +63,15 @@ python -c "import tensorflow as tf;print(tf.config.list_physical_devices('GPU'))
 * [Shell script for qsub](https://github.com/mjirik/ZDO/blob/master/examples/pytorch_quickstart/qsub_pyt_tutorial_quickstart.sh)
 
 ```shell
-mkdir -p ~/tensorflow_quickstart
-cd ~/tensorflow_quickstart
-wget https://raw.githubusercontent.com/mjirik/ZDO/master/examples/tensorflow_quickstart/example_mnist.py
-wget https://raw.githubusercontent.com/mjirik/ZDO/master/examples/tensorflow_quickstart/qsub_example_mnist.sh
+mkdir -p ~/projects
+cd ~/projects
+git clone git@github.com:mjirik/tutorials.git
 ```
 
 
 ## Add training  and testing into Metacentrum queue
 ```shell
+cd ~/projects/tutorials/metacentrum/tensorflow_quickstart/
 qsub qsub_example_mnist.sh
 ```
 
