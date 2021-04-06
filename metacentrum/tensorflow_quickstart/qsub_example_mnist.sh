@@ -10,8 +10,8 @@
 # qsub qsub_pyt_tutorial_quickstart.sh
 
 # nastaveni domovskeho adresare, v promenne $LOGNAME je ulozeno vase prihlasovaci jmeno
-LOGDIR="/storage/plzen1/home/$LOGNAME/tensorflow_quickstart/"
-PROJECTDIR="/storage/plzen1/home/$LOGNAME/tensorflow_quickstart/"
+LOGDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/tensorflow_quickstart/"
+PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/tensorflow_quickstart/"
 #DATADIR="/storage/plzen4-ntis/projects/queetech/medical/processed/scaffan2019/metacentrum"
 
 
