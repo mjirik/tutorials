@@ -1,8 +1,8 @@
 """
-run by:
-
-python run.py
+cd pymodules
+python -m mymodule.run_from_inside
 """
+
 
 import mymodule.moduletwo
 
