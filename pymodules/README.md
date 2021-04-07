@@ -13,7 +13,7 @@ cd pymodules
   add the actual (`pymodules`) dir
 * `python mymodule/run_from_inside.py` 
   
-  add `pymodules/mymodule` dir so it is too deep to see `mymodule`
+  add `pymodules/mymodule` dir so it is too deep to see `mymodule` --> Failure
 
 * `python -m mymodule.run_from_inside.py`
 
