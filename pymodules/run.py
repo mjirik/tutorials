@@ -1,4 +1,4 @@
-import mymodules
+import mymodule.moduletwo
 
 
-mymodules.moduletwo.print_hello_vlkoslav()
+mymodule.moduletwo.print_hello_vlkoslav()
