@@ -27,13 +27,22 @@ Check if conda is ok
 conda list
 ```
 
-### Problems on Metacentrum
+### Problem 1: no conda 
 
 If `conda` does not work, try to run`~.bashrc` manually:
 ```shell
 source ~/.bashrc
 ```
 or restart the session.
+
+### Problem 2: permissions
+
+Sometimes the premission to run have to be set for `conda` and `python`
+
+```bash
+chmod u+x ~/miniconda3/bin/conda
+chmod u+x ~/miniconda3/bin/python
+```
 
 
 ## Create the environment
