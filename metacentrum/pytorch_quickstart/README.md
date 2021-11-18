@@ -48,7 +48,7 @@ chmod u+x ~/miniconda3/bin/python
 ## Create the environment
 
 ```shell
-conda create -n mytorch python
+conda create -n mytorch python=3.8
 conda activate mytorch
 conda install pytorch torchvision torchaudio pytorch cudatoolkit=11.0 matplotlib -c pytorch
 ```
