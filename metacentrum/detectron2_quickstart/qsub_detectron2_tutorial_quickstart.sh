@@ -12,7 +12,7 @@
 # nastaveni domovskeho adresare, v promenne $LOGNAME je ulozeno vase prihlasovaci jmeno
 LOGDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/pytorch_quickstart/"
 PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/detectron2_quickstart/"
-DATADIR="/storage/plzen4-ntis/$LOGNAME/data/cocos2d/"
+DATADIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/"
 
 
 echo "job: $PBS_JOBID running on: `uname -n`"
@@ -35,7 +35,10 @@ cp $DATADIR/orig $SCRATCHDIR/data/orig
 # activate environment option 1: miniconda installed
 module add cuda-10.1
 module add conda-modules-py37
-soucre conda activate /storage/praha1/home/$LOGNAME/.conda/envs/drawnUI-conda/
+module add gcc-8.3.0
+
+#source conda activate drawnUI-conda
+conda activate /storage/plzen1/home/$LOGNAME/.conda/envs/drawnUI-conda
 
 
 

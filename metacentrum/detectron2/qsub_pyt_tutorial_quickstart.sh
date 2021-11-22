@@ -36,7 +36,6 @@ module add gcc-8.3.0
 
 #export PATH=/storage/plzen1/home/$LOGNAME/miniconda3/bin:$PATH
 #source activate mytorch
-conda activate drawnUI-conda
 conda activate /storage/brno3-cerit/home/$LOGNAME/.conda/envs/drawnUI-conda
 
 
