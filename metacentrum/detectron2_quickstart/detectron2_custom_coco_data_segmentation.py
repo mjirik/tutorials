@@ -8,7 +8,7 @@ setup_logger()
 import matplotlib.pyplot as plt
 import numpy as np
 import cv2
-from google.colab.patches import cv2_imshow
+# from google.colab.patches import cv2_imshow
 
 # import some common detectron2 utilities
 from detectron2.engine import DefaultPredictor
