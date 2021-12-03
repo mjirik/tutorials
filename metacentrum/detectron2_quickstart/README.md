@@ -30,7 +30,7 @@ module add gcc-8.3.0
 module add ninja/ninja-1.10.0-gcc-8.3.0-xraep32
 
 # create and activate "drawnUI-conda" environment in your home directory
-conda create --prefix p /storage/plzen1/home/$LOGNAME/.conda/envs/drawnUI-conda python=3.6
+conda create --prefix /storage/plzen1/home/$LOGNAME/.conda/envs/drawnUI-conda python=3.6
 conda activate /storage/plzen1/home/$LOGNAME/.conda/envs/drawnUI-conda
 
 # temp dir to not recieve error message: "Disk quota exceeded"
