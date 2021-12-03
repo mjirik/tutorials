@@ -27,7 +27,8 @@ from detectron2.data.datasets import register_coco_instances
 register_coco_instances("fruits_nuts", {}, str(input_data_dir / "data/trainval.json"), str(input_data_dir / "data/images"))
 
 
-
+fruits_nuts_metadata = MetadataCatalog.get("fruits_nuts")
+dataset_dicts = DatasetCatalog.get("fruits_nuts")
 
 import random
 
