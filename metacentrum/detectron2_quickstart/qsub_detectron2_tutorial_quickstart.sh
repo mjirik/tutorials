@@ -36,8 +36,9 @@ mkdir -p $SCRATCHDIR/data/processed
 mkdir -p $OUTPUTDIR
 cp -r $DATADIR $SCRATCHDIR/data/orig/
 
+echo "SCRATCHDIR=$SCRATCHDIR"
 echo "ls SCRATCHDIR/data/orig :"
-ls $SCRATCHDIR/data/orig
+ls $SCRATCHDIR/data/orig/
 
 # spusteni aplikace - samotny vypocet
 
