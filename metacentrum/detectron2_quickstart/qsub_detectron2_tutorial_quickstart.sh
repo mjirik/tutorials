@@ -34,7 +34,7 @@ cd $SCRATCHDIR || exit 1
 mkdir -p $SCRATCHDIR/data/orig
 mkdir -p $SCRATCHDIR/data/processed
 mkdir -p $OUTPUTDIR
-cp $DATADIR $SCRATCHDIR/data/orig
+cp -r $DATADIR $SCRATCHDIR/data/orig
 
 echo "ls SCRATCHDIR/data/orig :"
 ls $SCRATCHDIR/data/orig
