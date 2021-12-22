@@ -3,7 +3,7 @@
 
 [Metacentrum tutorial](https://wiki.metacentrum.cz/wiki/Pruvodce_pro_zacatecniky)
 
-
+You can use WinSCP (for data upload) or Putty to connect to [available Metacentrum forntends](https://wiki.metacentrum.cz/wiki/Frontend)
 
 # Install detectron on Metacentrum
 

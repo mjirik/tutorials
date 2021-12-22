@@ -61,10 +61,10 @@ export LANG=C.UTF-8
 
 
 # Put your code here
-python  $PROJECTDIR/pyt_tutorial_quickstart.py > results.txt
+python  $PROJECTDIR/qsub_detectron2_custom_coco_data_segmentation.py > results.txt
 
 ls
 # kopirovani vystupnich dat z vypocetnicho uzlu do domovskeho adresare,
 # pokud by pri kopirovani doslo k chybe, nebude adresar SCRATCH vymazan pro moznost rucniho vyzvednuti dat
 cp results.txt $OUTPUTDIR || export CLEAN_SCRATCH=false
-cp $SCRATCHDIR/data/processd $OUTPUTDIR/processed || export CLEAN_SCRATCH=false
+cp -r $SCRATCHDIR/data/processd $OUTPUTDIR/processed || export CLEAN_SCRATCH=false
