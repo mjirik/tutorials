@@ -1,13 +1,19 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=1:ngpus=2:mem=10gb:cl_konos=False:cl_gram=False:scratch_local=10gb
+#PBS -l select=1:ncpus=1:ngpus=1:mem=10gb::scratch_local=10gb
 #PBS -l walltime=01:00:00 -q gpu
+
 # modify/delete the above given guidelines according to your job's needs
 # Please note that only one select= argument is allowed at a time.
+
+# You can check available parameters and machines here:
+# https://metavo.metacentrum.cz/pbsmon2/qsub_pbspro
+
+# cl_konos=False:cl_gram=False
 
 # # PBS -l select=1:ncpus=1:mem=1gb:scratch_local=4gb
 
 # add to qsub with:
-# qsub qsub_pyt_tutorial_quickstart.sh
+# qsub qsub_detectron2_tutorial_quickstart.sh
 
 # nastaveni domovskeho adresare, v promenne $LOGNAME je ulozeno vase prihlasovaci jmeno
 PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/detectron2_quickstart"

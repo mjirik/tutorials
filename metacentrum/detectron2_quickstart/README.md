@@ -27,12 +27,11 @@ Run these lines on recived computer with GPU in interactive mode.
 ```bash
 module add cuda-10.1
 module add conda-modules-py37
-
 module add gcc-8.3.0
 module add ninja/ninja-1.10.0-gcc-8.3.0-xraep32
 
 # create and activate "drawnUI-conda" environment in your home directory
-conda create --prefix /storage/plzen1/home/$LOGNAME/.conda/envs/drawnUI-conda python=3.6
+conda create --yes --prefix /storage/plzen1/home/$LOGNAME/.conda/envs/drawnUI-conda python=3.6
 conda activate /storage/plzen1/home/$LOGNAME/.conda/envs/drawnUI-conda
 
 # temp dir to not recieve error message: "Disk quota exceeded"
@@ -40,24 +39,20 @@ export TMPDIR=/storage/plzen1/home/$USER/condatmp
 mkdir -p $TMPDIR
 
 # installation of needed packages
-conda install numpy                 # it is missing in conda at the default
-conda install ninja                 # better to have it
-pip install opencv-python           # if you need OpenCV in your scripts
+#    numpy - it is missing in conda at the default
+#    ninja - better to have it
+#    loguru - easier logging
+#    ...if you need more packages your scripts, here is the place
+conda install --yes numpy ninja loguru
+
+pip install opencv-python           
 
 # installation of needed packages for detectron2, We tested detectron2 version 0.5 with pytorch 1.7 and Cuda 10.1
-mkdir -p extern
-cd extern
-git clone https://github.com/facebookresearch/detectron2.git                                                    # clone detectron2
-cd detectron2
-git checkout v0.5
-cd ..
+git clone https://github.com/facebookresearch/detectron2.git  --branch v0.5                                              
+
 pip install torch==1.7.1+cu101 torchvision==0.8.2+cu101 -f https://download.pytorch.org/whl/torch_stable.html   # pytorch with cuda-10.1
 pip install -e detectron2                                                                                       # detectron2
 pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu101/torch1.7/index.html            # prebuild
-
-# go to the local directory and clone the project
-cd /storage/plzen1/home/$USER/
-mkdir -p data
 
 exit
 ```
@@ -73,10 +68,30 @@ unzip data.zip > /dev/null
 ```
 
 
-Run experiment 
-
+Get the scripts to run
 ```bash
 mkdir -p ~/projects
 cd ~/projects/
 git pull 
 ```
+
+
+Run the experiment
+```bash
+cd ~/projects/tutorials/metacentrum/detectron2_quickstart/
+qsub qsub_detectron2_tutorial_quickstart.sh
+```
+
+Check the web if the task is running:
+https://metavo.metacentrum.cz/pbsmon2/user/mjirik
+
+Check the logs are stored in `~/projects/tutorials/metacentrum/detectron2_quickstart/`
+with the suffix `*.o*` and `*.e*`
+
+The output files
+```bash
+
+```
+
+
+and check the logs
