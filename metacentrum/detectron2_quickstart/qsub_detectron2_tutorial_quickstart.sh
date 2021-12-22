@@ -10,9 +10,9 @@
 # qsub qsub_pyt_tutorial_quickstart.sh
 
 # nastaveni domovskeho adresare, v promenne $LOGNAME je ulozeno vase prihlasovaci jmeno
-PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/detectron2_quickstart/"
-DATADIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/orig/"
-OUTPUDIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/processed/"
+PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/detectron2_quickstart"
+DATADIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/orig"
+OUTPUDIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/processed"
 
 
 echo "job: $PBS_JOBID running on: `uname -n`"

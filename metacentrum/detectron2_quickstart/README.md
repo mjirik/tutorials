@@ -71,3 +71,12 @@ cd ~/data/cocos2d/orig/
 wget https://github.com/Tony607/detectron2_instance_segmentation_demo/releases/download/V0.1/data.zip
 unzip data.zip > /dev/null
 ```
+
+
+Run experiment 
+
+```bash
+mkdir -p ~/projects
+cd ~/projects/
+git pull 
+```
