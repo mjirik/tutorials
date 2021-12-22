@@ -43,7 +43,7 @@ for d in random.sample(dataset_dicts, 3):
     vis = visualizer.draw_dataset_dict(d)
     file_path = outputdir/"vis_train"/ Path(d["file_name"]).name
     logger.debug(d["file_name"])
-    outputdir.parent.mkdir(parents=True, exist_ok=True)
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     logger.debug(file_path)
     cv2.imwrite(str(file_path), vis.get_image()[:, :, ::-1])
 
