@@ -1,3 +1,5 @@
+# Learn about Metacentrum
+
 
 [Metacentrum tutorial](https://wiki.metacentrum.cz/wiki/Pruvodce_pro_zacatecniky)
 
@@ -64,7 +66,7 @@ exit
 Get the dataset 
 
 ```bash
-mkdir -R ~data/cocos2d/orig/
+mkdir -p ~data/cocos2d/orig/
 cd ~/data/cocos2d/orig/
 wget https://github.com/Tony607/detectron2_instance_segmentation_demo/releases/download/V0.1/data.zip
 unzip data.zip > /dev/null

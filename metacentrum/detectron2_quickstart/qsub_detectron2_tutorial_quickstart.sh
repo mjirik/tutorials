@@ -10,9 +10,9 @@
 # qsub qsub_pyt_tutorial_quickstart.sh
 
 # nastaveni domovskeho adresare, v promenne $LOGNAME je ulozeno vase prihlasovaci jmeno
-LOGDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/pytorch_quickstart/"
 PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/detectron2_quickstart/"
-DATADIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/"
+DATADIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/orig/"
+OUTPUDIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/processed/"
 
 
 echo "job: $PBS_JOBID running on: `uname -n`"
@@ -25,10 +25,13 @@ trap 'clean_scratch' TERM EXIT
 cd $SCRATCHDIR || exit 1
 
 # priprava vstupnich dat (kopirovani dat na vypocetni uzel)
-mkdir -r $SCRATCHDIR/data/orig
-mkdir -r $SCRATCHDIR/data/processed
-mkdir -r $DATADIR/processed
-cp $DATADIR/orig $SCRATCHDIR/data/orig
+mkdir -p $SCRATCHDIR/data/orig
+mkdir -p $SCRATCHDIR/data/processed
+mkdir -p $OUTPUTDIR
+cp $DATADIR $SCRATCHDIR/data/orig
+
+echo "ls SCRATCHDIR/data/orig :"
+ls $SCRATCHDIR/data/orig
 
 # spusteni aplikace - samotny vypocet
 
@@ -57,5 +60,5 @@ python  $PROJECTDIR/pyt_tutorial_quickstart.py > results.txt
 ls
 # kopirovani vystupnich dat z vypocetnicho uzlu do domovskeho adresare,
 # pokud by pri kopirovani doslo k chybe, nebude adresar SCRATCH vymazan pro moznost rucniho vyzvednuti dat
-cp results.txt $LOGDIR || export CLEAN_SCRATCH=false
-cp $SCRATCHDIR/data/processd $DATADIR/processed || export CLEAN_SCRATCH=false
+cp results.txt $OUTPUTDIR || export CLEAN_SCRATCH=false
+cp $SCRATCHDIR/data/processd $OUTPUTDIR/processed || export CLEAN_SCRATCH=false

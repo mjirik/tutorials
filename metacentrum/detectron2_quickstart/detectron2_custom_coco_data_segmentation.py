@@ -18,14 +18,18 @@ from detectron2.data import MetadataCatalog, DatasetCatalog
 from pathlib import Path
 import os
 scratchdir = os.getenv('SCRATCHDIR', ".")
+from loguru import logger
 
 input_data_dir = Path(scratchdir) / 'data/orig/'
 outputdir = Path(scratchdir) / 'data/processed/'
 
+logger.debug(f"outputdir={outputdir}")
+logger.debug(f"input_data_dir={input_data_dir}")
+# print all files in input dir recursively to check everything
+logger.debug(str(Path(input_data_dir).glob("**/*")))
 
 from detectron2.data.datasets import register_coco_instances
 register_coco_instances("fruits_nuts", {}, str(input_data_dir / "data/trainval.json"), str(input_data_dir / "data/images"))
-
 
 fruits_nuts_metadata = MetadataCatalog.get("fruits_nuts")
 dataset_dicts = DatasetCatalog.get("fruits_nuts")
