@@ -43,7 +43,7 @@ mkdir -p $TMPDIR
 #    ninja - better to have it
 #    loguru - easier logging
 #    ...if you need more packages your scripts, here is the place
-conda install --yes numpy ninja loguru
+conda install --yes -c conda-forge numpy ninja loguru
 
 pip install opencv-python           
 
