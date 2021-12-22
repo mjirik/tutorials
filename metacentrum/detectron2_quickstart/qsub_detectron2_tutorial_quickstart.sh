@@ -41,8 +41,8 @@ echo "ls DATADIR :"
 ls $DATADIR
 
 echo "SCRATCHDIR=$SCRATCHDIR"
-echo "ls SCRATCHDIR/data/orig :"
-ls $SCRATCHDIR/data/orig/
+echo "find SCRATCHDIR/data/orig/ :"
+find $SCRATCHDIR/data/orig/
 
 # spusteni aplikace - samotny vypocet
 
