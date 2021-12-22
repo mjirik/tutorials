@@ -72,7 +72,8 @@ Get the scripts to run
 ```bash
 mkdir -p ~/projects
 cd ~/projects/
-git pull 
+git clone https://github.com/facebookresearch/detectron2.git  --branch v0.5                                              
+git clone https://github.com/mjirik/tutorials.git
 ```
 
 

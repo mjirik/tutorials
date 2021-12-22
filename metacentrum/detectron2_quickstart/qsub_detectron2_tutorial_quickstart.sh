@@ -40,6 +40,7 @@ echo "DATADIR=$DATADIR"
 echo "ls DATADIR :"
 ls $DATADIR
 
+# list all files in SCRATCHDIR/data/orig
 echo "SCRATCHDIR=$SCRATCHDIR"
 echo "find SCRATCHDIR/data/orig/ :"
 find $SCRATCHDIR/data/orig/
