@@ -18,7 +18,7 @@
 # nastaveni domovskeho adresare, v promenne $LOGNAME je ulozeno vase prihlasovaci jmeno
 PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/detectron2_quickstart"
 DATADIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/orig"
-OUTPUDIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/processed"
+OUTPUTDIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/processed"
 
 
 echo "job: $PBS_JOBID running on: `uname -n`"
@@ -34,7 +34,7 @@ cd $SCRATCHDIR || exit 1
 mkdir -p $SCRATCHDIR/data/orig
 mkdir -p $SCRATCHDIR/data/processed
 mkdir -p $OUTPUTDIR
-cp -r $DATADIR $SCRATCHDIR/data/orig
+cp -r $DATADIR $SCRATCHDIR/data/orig/
 
 echo "ls SCRATCHDIR/data/orig :"
 ls $SCRATCHDIR/data/orig
@@ -63,8 +63,7 @@ export LANG=C.UTF-8
 # Put your code here
 python  $PROJECTDIR/qsub_detectron2_custom_coco_data_segmentation.py > results.txt
 
-ls
 # kopirovani vystupnich dat z vypocetnicho uzlu do domovskeho adresare,
 # pokud by pri kopirovani doslo k chybe, nebude adresar SCRATCH vymazan pro moznost rucniho vyzvednuti dat
 cp results.txt $OUTPUTDIR || export CLEAN_SCRATCH=false
-cp -r $SCRATCHDIR/data/processd $OUTPUTDIR/processed || export CLEAN_SCRATCH=false
+cp -r $SCRATCHDIR/data/processed $OUTPUTDIR/processed || export CLEAN_SCRATCH=false
