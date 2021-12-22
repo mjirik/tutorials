@@ -36,7 +36,9 @@ for d in random.sample(dataset_dicts, 3):
     img = cv2.imread(d["file_name"])
     visualizer = Visualizer(img[:, :, ::-1], metadata=fruits_nuts_metadata, scale=0.5)
     vis = visualizer.draw_dataset_dict(d)
-    cv2.imwrite(f'{outputdir/"vis_train"/ d["file_name"]}', vis.get_image()[:, :, ::-1])
+    file_path = outputdir/"vis_train"/ d["file_name"]
+    outputdir.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(file_path), vis.get_image()[:, :, ::-1])
 
 
 
@@ -80,6 +82,8 @@ for d in random.sample(dataset_dicts, 3):
                    instance_mode=ColorMode.IMAGE_BW   # remove the colors of unsegmented pixels
     )
     v = v.draw_instance_predictions(outputs["instances"].to("cpu"))
-    cv2.imwrite(f'{outputdir / "vis_predictions" / d["file_name"]}', vis.get_image()[:, :, ::-1])
+    file_path = outputdir / "vis_predictions" / d["file_name"]
+    outputdir.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(file_path), v.get_image()[:, :, ::-1])
     # cv2_imshow(v.get_image()[:, :, ::-1])
 
