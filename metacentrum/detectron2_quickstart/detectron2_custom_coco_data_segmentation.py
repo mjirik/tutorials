@@ -53,7 +53,7 @@ from detectron2.config import get_cfg
 import os
 
 cfg = get_cfg()
-cfg.merge_from_file(f"/storage/plzen1/logname/projects/detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
+cfg.merge_from_file(f"/storage/plzen1/home/{logname}/projects/detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
 cfg.DATASETS.TRAIN = ("fruits_nuts",)
 cfg.DATASETS.TEST = ()   # no metrics implemented for this dataset
 cfg.DATALOADER.NUM_WORKERS = 2
