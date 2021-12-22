@@ -61,7 +61,7 @@ export LANG=C.UTF-8
 
 
 # Put your code here
-python  $PROJECTDIR/qsub_detectron2_custom_coco_data_segmentation.py > results.txt
+python  $PROJECTDIR/detectron2_custom_coco_data_segmentation.py > results.txt
 
 # kopirovani vystupnich dat z vypocetnicho uzlu do domovskeho adresare,
 # pokud by pri kopirovani doslo k chybe, nebude adresar SCRATCH vymazan pro moznost rucniho vyzvednuti dat
