@@ -61,7 +61,7 @@ exit
 Get the dataset 
 
 ```bash
-mkdir -p ~data/cocos2d/orig/
+mkdir -p ~/data/cocos2d/orig/
 cd ~/data/cocos2d/orig/
 wget https://github.com/Tony607/detectron2_instance_segmentation_demo/releases/download/V0.1/data.zip
 unzip data.zip > /dev/null
@@ -72,7 +72,6 @@ Get the scripts to run
 ```bash
 mkdir -p ~/projects
 cd ~/projects/
-git clone https://github.com/facebookresearch/detectron2.git  --branch v0.5                                              
 git clone https://github.com/mjirik/tutorials.git
 ```
 
