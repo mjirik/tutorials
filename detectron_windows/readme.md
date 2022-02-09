@@ -5,8 +5,8 @@ In February 2022 we experienced problems with installation. Check the [Known pro
 
 [Install conda or miniconda](https://docs.conda.io/en/latest/miniconda.html)
 ```shell
-conda create -n detectron_cpu python=3.8
-conda activate detectron_cpu
+conda create -n detectron python=3.8
+conda activate detectron
 conda install pytorch=1.10 torchvision torchaudio cpuonly -c pytorch
 conda install cython opencv scikit-image
 pip install git+https://github.com/facebookresearch/detectron2.git@v0.5
@@ -29,6 +29,13 @@ Check the [pytorch web](https://pytorch.org/get-started/locally/)
 for different Cuda or pytorch versions
  
 
+# Test detectron
+
+```shell
+cd detectron_windows
+conda activate detectron
+python detectron2_demo.py
+```
 
 # Known problems
 
