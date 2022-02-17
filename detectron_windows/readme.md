@@ -1,7 +1,11 @@
 
+
 In February 2022 we experienced problems with installation. Check the [Known problems section](#known-problems)
 
-# Install detectron2 with CPU only
+## Install detectron2 with CPU only
+
+
+
 
 [Install conda or miniconda](https://docs.conda.io/en/latest/miniconda.html)
 ```shell
@@ -12,16 +16,19 @@ conda install cython opencv scikit-image
 pip install git+https://github.com/facebookresearch/detectron2.git@v0.5
 ```
 
-# Install detectron2 with GPU
+## Install detectron2 with GPU
 
-
+Requirements:
 [Install conda or miniconda](https://docs.conda.io/en/latest/miniconda.html)
+[Microsoft Visual C++ 14.0 or greater](https://visualstudio.microsoft.com/cs/visual-cpp-build-tools/) is required. Get it with "Microsoft C++ Build Tools
+
 
 ```shell
 conda create -n detectron python=3.8
 conda activate detectron
 conda install pytorch=1.10 torchvision torchaudio cudatoolkit=10.2 -c pytorch
 conda install cython opencv scikit-image
+
 pip install git+https://github.com/facebookresearch/detectron2.git@v0.5
 ```
 
@@ -63,3 +70,11 @@ conda install pywin32
 ```
 
 [More details here](https://github.com/conansherry/detectron2/issues/8)
+
+
+
+## Before the pip install git+https... 
+
+```shell
+pip install -U pip wheel setuptools
+```
