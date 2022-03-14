@@ -30,7 +30,13 @@ logger.debug(f"input_data_dir={input_data_dir}")
 logger.debug(str(Path(input_data_dir).glob("**/*")))
 
 from detectron2.data.datasets import register_coco_instances
-register_coco_instances("fruits_nuts", {}, str(input_data_dir / "data/trainval.json"), str(input_data_dir / "data/images"))
+path_to_json = str(input_data_dir / "data/trainval.json")
+path_to_images = str(input_data_dir / "data/images")
+
+logger.debug(f"path_to_json={path_to_json}")
+logger.debug(f"path_to_images={path_to_images}")
+
+register_coco_instances("fruits_nuts", {}, path_to_json , path_to_images)
 
 fruits_nuts_metadata = MetadataCatalog.get("fruits_nuts")
 dataset_dicts = DatasetCatalog.get("fruits_nuts")
@@ -74,7 +80,7 @@ trainer.train()
 
 cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, "model_final.pth")
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5   # set the testing threshold for this model
-cfg.DATASETS.TEST = ("fruits_nuts", )
+cfg.DATASETS.TEST = ("fruits_nuts", )  # you can (and should) register another dataset and put it here
 predictor = DefaultPredictor(cfg)
 
 
