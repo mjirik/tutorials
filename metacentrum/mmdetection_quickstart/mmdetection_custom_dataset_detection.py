@@ -81,7 +81,7 @@ model.eval()
 # Use the detector to do inference
 img = mmdetection_path / 'demo/demo.jpg'
 result = inference_detector(model, img)
-model.show_result(img, result, out_file='demo_output.jpg')# save image with result
+model.show_result(img, result, out_file=outputdir / 'demo_output.jpg')# save image with result
 
 
 # My dataset training
@@ -158,6 +158,6 @@ print(f'Config:\n{cfg.pretty_text}')
 logger.debug(f"outputdir={outputdir}")
 logger.debug(f"input_data_dir={input_data_dir}")
 # # print all files in input dir recursively to check everything
-logger.debug(str(Path(input_data_dir).glob("**/*")))
+logger.debug(str(list(Path(input_data_dir)).glob("**/*")))
 
 
