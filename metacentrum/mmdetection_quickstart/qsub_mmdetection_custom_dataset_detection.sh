@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:gpu_cap=cuda61
+#PBS -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:gpu_cap=cuda70
 #PBS -l walltime=01:00:00 -q gpu
 
 # modify/delete the above given guidelines according to your job's needs
@@ -64,7 +64,7 @@ mkdir -p $SCRATCHDIR/checkpoints
 CHECKPOINT_PTH=faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth
 
 if [ ! -f $SCRATCHDIR/checkpoints/$CHECKPOINT_PTH ]; then
-  wget -c https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco/$CHECKPOINT_PTH \
+  wget --progress=bar:force:noscroll -c https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco/$CHECKPOINT_PTH \
       -O $SCRATCHDIR/checkpoints/$CHECKPOINT_PTH
 fi
 
