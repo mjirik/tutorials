@@ -85,5 +85,5 @@ singularity exec -B $SCRATCHDIR:$SCRATCHDIR /auto/plzen4-ntis/projects/cv/Carniv
 # kopirovani vystupnich dat z vypocetnicho uzlu do domovskeho adresare,
 # pokud by pri kopirovani doslo k chybe, nebude adresar SCRATCH vymazan pro moznost rucniho vyzvednuti dat
 cp results.txt $OUTPUTDIR || export CLEAN_SCRATCH=false
-cp -r $SCRATCHDIR/data/processed/* $OUTPUTDIR/processed || export CLEAN_SCRATCH=false
+cp -r $SCRATCHDIR/data/processed/* $OUTPUTDIR || export CLEAN_SCRATCH=false
 find $OUTPUTDIR/processed/
