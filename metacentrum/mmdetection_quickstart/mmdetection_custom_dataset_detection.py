@@ -38,8 +38,8 @@ scratchdir = os.getenv('SCRATCHDIR', ".")
 logname = os.getenv('LOGNAME', ".")
 # from loguru import logger
 
-input_data_dir = Path(scratchdir) / 'data/orig/'
-outputdir = Path(scratchdir) / 'data/processed/'
+local_input_data_dir = Path(scratchdir) / 'data/orig/'
+local_output_data_dir = Path(scratchdir) / 'data/processed/'
 
 import mmcv
 from mmcv.runner import load_checkpoint
@@ -81,10 +81,10 @@ model.eval()
 # Use the detector to do inference
 img = mmdetection_path / 'demo/demo.jpg'
 result = inference_detector(model, img)
-model.show_result(img, result, out_file=outputdir / 'demo_output.jpg')# save image with result
+model.show_result(img, result, out_file=local_output_data_dir / 'demo_output.jpg')# save image with result
 
-logger.debug(f"outputdir={outputdir}")
-logger.debug(f"input_data_dir={input_data_dir}")
+logger.debug(f"outputdir={local_output_data_dir}")
+logger.debug(f"input_data_dir={local_input_data_dir}")
 
 # My dataset training
 from mmcv import Config
@@ -94,23 +94,23 @@ from mmdet.apis import set_random_seed
 
 # Modify dataset type and path
 cfg.dataset_type = 'CocoDataset'
-cfg.data_root = input_data_dir
+cfg.data_root = local_input_data_dir
 cfg.classes = ('date', 'fig', 'hazelnut',)
 
 cfg.data.test.type = 'CocoDataset'
-cfg.data.test.data_root = input_data_dir/ 'data/'
+cfg.data.test.data_root = local_input_data_dir / 'data/'
 cfg.data.test.ann_file = 'trainval.json'
 cfg.data.test.img_prefix = 'images/'
 cfg.data.test.classes = cfg.classes
 
 cfg.data.train.type = 'CocoDataset'
-cfg.data.train.data_root = input_data_dir / 'data/'
+cfg.data.train.data_root = local_input_data_dir / 'data/'
 cfg.data.train.ann_file = 'trainval.json'
 cfg.data.train.img_prefix = 'images/'
 cfg.data.train.classes = cfg.classes
 
 cfg.data.val.type = 'CocoDataset'
-cfg.data.val.data_root = input_data_dir / 'data/'
+cfg.data.val.data_root = local_input_data_dir / 'data/'
 cfg.data.val.ann_file = 'trainval.json'
 cfg.data.val.img_prefix = 'images/'
 cfg.data.val.classes = cfg.classes
@@ -122,7 +122,7 @@ cfg.model.roi_head.bbox_head.num_classes = 3
 cfg.load_from = 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
 
 # Set up working dir to save files and logs.
-cfg.work_dir = outputdir / 'tutorial2_exps'
+cfg.work_dir = str(local_output_data_dir / 'tutorial_exps')
 
 # The original learning rate (LR) is set for 8-GPU training.
 # We divide it by 8 since we only use one GPU.
@@ -177,17 +177,16 @@ mmcv.mkdir_or_exist(osp.abspath(cfg.work_dir))
 train_detector(model, datasets, cfg, distributed=False, validate=True)
 
 
-img_fn = input_data_dir / 'data/images/10.jpg'
+img_fn = local_input_data_dir / 'data/images/10.jpg'
 img = mmcv.imread(img_fn)
 
 model.cfg = cfg
 result = inference_detector(model, img)
 # show_result_pyplot(model, img, result)
-model.show_result(img, result, out_file=outputdir / f'output_{img_fn.stem}.jpg')# save image with result
-
+model.show_result(img, result, out_file=local_output_data_dir / f'output_{img_fn.stem}.jpg')# save image with result
 
 
 # # print all files in input dir recursively to check everything
-logger.debug(str(list(Path(input_data_dir)).glob("**/*")))
+logger.debug(str(list(Path(local_input_data_dir)).glob("**/*")))
 
 
