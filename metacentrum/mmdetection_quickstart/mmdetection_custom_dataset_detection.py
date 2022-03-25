@@ -152,6 +152,36 @@ print(f'Config:\n{cfg.pretty_text}')
 
 
 
+from mmdet.datasets import build_dataset
+from mmdet.models import build_detector
+from mmdet.apis import train_detector
+
+
+# Build dataset
+datasets = [build_dataset(cfg.data.train)]
+
+print(datasets[0].CLASSES)
+
+
+# Build the detector
+model = build_detector(cfg.model)
+# Add an attribute for visualization convenience
+model.CLASSES = datasets[0].CLASSES
+
+import os.path as osp
+
+# Create work_dir
+mmcv.mkdir_or_exist(osp.abspath(cfg.work_dir))
+train_detector(model, datasets, cfg, distributed=False, validate=True)
+
+
+img_fn = input_data_dir / 'data/images/10.jpg'
+img = mmcv.imread(img_fn)
+
+model.cfg = cfg
+result = inference_detector(model, img)
+# show_result_pyplot(model, img, result)
+model.show_result(img, result, out_file=outputdir / f'output_{img_fn.stem}.jpg')# save image with result
 
 
 
