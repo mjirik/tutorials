@@ -83,6 +83,8 @@ img = mmdetection_path / 'demo/demo.jpg'
 result = inference_detector(model, img)
 model.show_result(img, result, out_file=outputdir / 'demo_output.jpg')# save image with result
 
+logger.debug(f"outputdir={outputdir}")
+logger.debug(f"input_data_dir={input_data_dir}")
 
 # My dataset training
 from mmcv import Config
@@ -185,8 +187,6 @@ model.show_result(img, result, out_file=outputdir / f'output_{img_fn.stem}.jpg')
 
 
 
-logger.debug(f"outputdir={outputdir}")
-logger.debug(f"input_data_dir={input_data_dir}")
 # # print all files in input dir recursively to check everything
 logger.debug(str(list(Path(input_data_dir)).glob("**/*")))
 
