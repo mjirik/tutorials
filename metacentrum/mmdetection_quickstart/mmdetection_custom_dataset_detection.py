@@ -34,8 +34,8 @@ logger = mmcv.utils.get_logger(name=__file__, log_level=logging.DEBUG)
 # from detectron2.data import MetadataCatalog, DatasetCatalog
 from pathlib import Path
 import os
-scratchdir = os.getenv('SCRATCHDIR', ".")
-logname = os.getenv('LOGNAME', ".")
+scratchdir = Path(os.getenv('SCRATCHDIR', "."))
+logname = Path(os.getenv('LOGNAME', "."))
 # from loguru import logger
 
 local_input_data_dir = Path(scratchdir) / 'data/orig/'
@@ -53,7 +53,7 @@ from mmdet.models import build_detector
 # Choose to use a config and initialize the detector
 config = mmdetection_path / 'configs/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco.py'
 # Setup a checkpoint file to load
-checkpoint = 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
+checkpoint = scratchdir / 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
 
 # Set the device to be used for evaluation
 device='cuda:0'
@@ -121,7 +121,7 @@ cfg.data.val.classes = cfg.classes
 cfg.model.roi_head.bbox_head.num_classes = 3
 # If we need to finetune a model based on a pre-trained detector, we need to
 # use load_from to set the path of checkpoints.
-cfg.load_from = 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
+cfg.load_from = scratchdir / 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
 
 # Set up working dir to save files and logs.
 cfg.work_dir = str(local_output_data_dir / 'tutorial_exps')
