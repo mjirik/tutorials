@@ -57,8 +57,8 @@ from mmdet.models import build_detector
 config = mmdetection_path / 'configs/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco.py'
 logger.debug(f"config.exists={config.exists()}")
 # Setup a checkpoint file to load
-checkpoint = scratchdir / 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
-logger.debug(f"checkpoint.exists={checkpoint.exists()}")
+checkpoint_pth = scratchdir / 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
+logger.debug(f"checkpoint_pth.exists={checkpoint_pth.exists()}")
 
 # Set the device to be used for evaluation
 device='cuda:0'
@@ -72,7 +72,7 @@ config.model.pretrained = None
 model = build_detector(config.model)
 
 # Load checkpoint
-checkpoint = load_checkpoint(model, checkpoint, map_location=device)
+checkpoint = load_checkpoint(model, str(checkpoint_pth), map_location=device)
 
 # Set the classes of models for inference
 model.CLASSES = checkpoint['meta']['CLASSES']
