@@ -41,6 +41,8 @@ logname = os.getenv('LOGNAME', ".")
 local_input_data_dir = Path(scratchdir) / 'data/orig/'
 local_output_data_dir = Path(scratchdir) / 'data/processed/'
 
+logger.debug(str(list(Path(local_input_data_dir).glob("**/*"))))
+
 import mmcv
 from mmcv.runner import load_checkpoint
 
@@ -187,6 +189,6 @@ model.show_result(img, result, out_file=local_output_data_dir / f'output_{img_fn
 
 
 # # print all files in input dir recursively to check everything
-logger.debug(str(list(Path(local_input_data_dir)).glob("**/*")))
+logger.debug(str(list(Path(local_output_data_dir).glob("**/*"))))
 
 
