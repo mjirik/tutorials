@@ -43,7 +43,8 @@ local_output_data_dir = Path(scratchdir) / 'data/processed/'
 
 logger.debug(f"outputdir={local_output_data_dir}")
 logger.debug(f"input_data_dir={local_input_data_dir}")
-logger.debug(str(list(Path(local_input_data_dir).glob("**/*"))))
+logger.debug(f"input_data_dir exists={local_input_data_dir.exists()}")
+logger.debug(f'input_data_dir glob={str(list(local_input_data_dir.glob("**/*")))}')
 
 import mmcv
 from mmcv.runner import load_checkpoint
@@ -54,8 +55,10 @@ from mmdet.models import build_detector
 
 # Choose to use a config and initialize the detector
 config = mmdetection_path / 'configs/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco.py'
+logger.debug(f"config.exists={config.exists()}")
 # Setup a checkpoint file to load
 checkpoint = scratchdir / 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
+logger.debug(f"checkpoint.exists={checkpoint.exists()}")
 
 # Set the device to be used for evaluation
 device='cuda:0'
