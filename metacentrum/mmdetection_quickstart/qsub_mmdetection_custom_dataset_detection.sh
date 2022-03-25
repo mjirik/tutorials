@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb
+#PBS -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:gpu_cap=cuda61
 #PBS -l walltime=01:00:00 -q gpu
 
 # modify/delete the above given guidelines according to your job's needs
@@ -27,7 +27,7 @@ echo "job: $PBS_JOBID running on: `uname -n`"
 
 
 # nastaveni automatickeho vymazani adresare SCRATCH pro pripad chyby pri behu ulohy
-#trap 'clean_scratch' TERM EXIT
+trap 'clean_scratch' TERM EXIT
 
 # vstup do adresare SCRATCH, nebo v pripade neuspechu ukonceni s chybovou hodnotou rovnou 1
 cd $SCRATCHDIR || exit 1
