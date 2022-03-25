@@ -2,6 +2,8 @@
 
 # import some common libraries
 import logging
+import mmcv.utils
+logger = mmcv.utils.get_logger(name=__file__, log_level=logging.DEBUG)
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,18 +13,17 @@ print(torch.__version__, torch.cuda.is_available())
 
 # Check MMDetection installation
 import mmdet
-print(mmdet.__version__)
+logger.debug(f'mmdet.version={mmdet.__version__}')
 
 # Check mmcv installation
 from mmcv.ops import get_compiling_cuda_version, get_compiler_version
-print(get_compiling_cuda_version())
-print(get_compiler_version())
+logger.debug(get_compiling_cuda_version())
+logger.debug(get_compiler_version())
+from pprint import pprint, pformat
 
 from pathlib import Path
 mmdetection_path = Path(mmdet.__file__).parent.parent
 
-import mmcv.utils
-logger = mmcv.utils.get_logger(name=__file__, log_level=logging.DEBUG)
 
 # import cv2
 # from google.colab.patches import cv2_imshow
@@ -155,8 +156,9 @@ cfg.log_config.hooks = [
 
 # We can initialize the logger for training and have a look
 # at the final config used for training
-logger.debug(f"cfg={cfg}")
-print(f'Config:\n{cfg.pretty_text}')
+# print(f'Config:\n{cfg.pretty_text}') # does not work for paths beginning '/' because of bug in lib2to3
+
+logger.debug(f"cfg=\n{pformat(cfg)}")
 
 
 
