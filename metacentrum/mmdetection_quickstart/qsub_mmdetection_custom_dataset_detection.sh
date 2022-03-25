@@ -60,8 +60,14 @@ find $SCRATCHDIR/data/orig/
 # We download the pre-trained checkpoints for inference and finetuning.
 echo "pwd: `pwd`"
 mkdir -p checkpoints
-wget -c https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth \
-      -O checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth
+
+CHECKPOINT_PTH=faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth
+
+if [ ! -f checkpoints/$CHECKPOINT_PTH ]; then
+  wget -c https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco/$CHECKPOINT_PTH \
+      -O checkpoints/$CHECKPOINT_PTH
+fi
+
 
 
 #export PATH=/storage/plzen1/home/$LOGNAME/miniconda3/bin:$PATH
