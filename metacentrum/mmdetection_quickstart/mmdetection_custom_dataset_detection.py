@@ -41,6 +41,8 @@ logname = Path(os.getenv('LOGNAME', "."))
 local_input_data_dir = Path(scratchdir) / 'data/orig/'
 local_output_data_dir = Path(scratchdir) / 'data/processed/'
 
+logger.debug(f"outputdir={local_output_data_dir}")
+logger.debug(f"input_data_dir={local_input_data_dir}")
 logger.debug(str(list(Path(local_input_data_dir).glob("**/*"))))
 
 import mmcv
@@ -85,8 +87,6 @@ img = mmdetection_path / 'demo/demo.jpg'
 result = inference_detector(model, img)
 model.show_result(img, result, out_file=local_output_data_dir / 'demo_output.jpg')# save image with result
 
-logger.debug(f"outputdir={local_output_data_dir}")
-logger.debug(f"input_data_dir={local_input_data_dir}")
 
 # My dataset training
 from mmcv import Config
@@ -164,7 +164,7 @@ from mmdet.apis import train_detector
 # Build dataset
 datasets = [build_dataset(cfg.data.train)]
 
-print(datasets[0].CLASSES)
+logger.debug(f"classes={datasets[0].CLASSES}")
 
 
 # Build the detector
