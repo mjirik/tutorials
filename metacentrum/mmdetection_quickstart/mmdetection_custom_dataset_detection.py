@@ -100,23 +100,23 @@ from mmdet.apis import set_random_seed
 
 # Modify dataset type and path
 cfg.dataset_type = 'CocoDataset'
-cfg.data_root = local_input_data_dir
+cfg.data_root = str(local_input_data_dir)
 cfg.classes = ('date', 'fig', 'hazelnut',)
 
 cfg.data.test.type = 'CocoDataset'
-cfg.data.test.data_root = local_input_data_dir / 'data/'
+cfg.data.test.data_root = str(local_input_data_dir / 'data/')
 cfg.data.test.ann_file = 'trainval.json'
 cfg.data.test.img_prefix = 'images/'
 cfg.data.test.classes = cfg.classes
 
 cfg.data.train.type = 'CocoDataset'
-cfg.data.train.data_root = local_input_data_dir / 'data/'
+cfg.data.train.data_root = str(local_input_data_dir / 'data/')
 cfg.data.train.ann_file = 'trainval.json'
 cfg.data.train.img_prefix = 'images/'
 cfg.data.train.classes = cfg.classes
 
 cfg.data.val.type = 'CocoDataset'
-cfg.data.val.data_root = local_input_data_dir / 'data/'
+cfg.data.val.data_root = str(local_input_data_dir / 'data/')
 cfg.data.val.ann_file = 'trainval.json'
 cfg.data.val.img_prefix = 'images/'
 cfg.data.val.classes = cfg.classes
