@@ -125,7 +125,7 @@ cfg.data.val.classes = cfg.classes
 cfg.model.roi_head.bbox_head.num_classes = 3
 # If we need to finetune a model based on a pre-trained detector, we need to
 # use load_from to set the path of checkpoints.
-cfg.load_from = scratchdir / 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth'
+cfg.load_from = str(scratchdir / 'checkpoints/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco_20210526_095054-1f77628b.pth')
 
 # Set up working dir to save files and logs.
 cfg.work_dir = str(local_output_data_dir / 'tutorial_exps')
