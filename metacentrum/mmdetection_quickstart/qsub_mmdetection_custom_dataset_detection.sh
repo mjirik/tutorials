@@ -14,14 +14,16 @@
 
 # add to qsub with:
 # qsub qsub_detectron2_tutorial_quickstart.sh
+DATETIME=`date +"%y%m%d_%H%M%S"`
 
 # nastaveni domovskeho adresare, v promenne $LOGNAME je ulozeno vase prihlasovaci jmeno
 PROJECTDIR="/storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/mmdetection_quickstart"
 DATADIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/orig"
-OUTPUTDIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/processed"
+OUTPUTDIR="/storage/plzen1/home/$LOGNAME/data/cocos2d/processed/$DATETIME"
 
 
 echo "job: $PBS_JOBID running on: `uname -n`"
+
 
 
 # nastaveni automatickeho vymazani adresare SCRATCH pro pripad chyby pri behu ulohy
