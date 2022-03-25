@@ -94,7 +94,7 @@ from mmdet.apis import set_random_seed
 
 # Modify dataset type and path
 cfg.dataset_type = 'CocoDataset'
-cfg.data_root = input_data_dir / 'data/'
+cfg.data_root = input_data_dir
 cfg.classes = ('date', 'fig', 'hazelnut',)
 
 cfg.data.test.type = 'CocoDataset'
