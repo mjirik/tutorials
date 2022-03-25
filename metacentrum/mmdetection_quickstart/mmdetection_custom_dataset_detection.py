@@ -98,19 +98,19 @@ cfg.data_root = input_data_dir
 cfg.classes = ('date', 'fig', 'hazelnut',)
 
 cfg.data.test.type = 'CocoDataset'
-cfg.data.test.data_root = 'data/'
+cfg.data.test.data_root = input_data_dir/ 'data/'
 cfg.data.test.ann_file = 'trainval.json'
 cfg.data.test.img_prefix = 'images/'
 cfg.data.test.classes = cfg.classes
 
 cfg.data.train.type = 'CocoDataset'
-cfg.data.train.data_root = 'data/'
+cfg.data.train.data_root = input_data_dir / 'data/'
 cfg.data.train.ann_file = 'trainval.json'
 cfg.data.train.img_prefix = 'images/'
 cfg.data.train.classes = cfg.classes
 
 cfg.data.val.type = 'CocoDataset'
-cfg.data.val.data_root = 'data/'
+cfg.data.val.data_root = input_data_dir / 'data/'
 cfg.data.val.ann_file = 'trainval.json'
 cfg.data.val.img_prefix = 'images/'
 cfg.data.val.classes = cfg.classes
