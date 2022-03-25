@@ -22,7 +22,7 @@ from pathlib import Path
 mmdetection_path = Path(mmdet.__file__).parent.parent
 
 import mmcv.utils
-logger = mmcv.utils.get_logger(log_level=logging.DEBUG)
+logger = mmcv.utils.get_logger(name=__file__, log_level=logging.DEBUG)
 
 # import cv2
 # from google.colab.patches import cv2_imshow
