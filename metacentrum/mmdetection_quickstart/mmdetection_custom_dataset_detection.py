@@ -155,6 +155,7 @@ cfg.log_config.hooks = [
 
 # We can initialize the logger for training and have a look
 # at the final config used for training
+logger.debug(f"cfg={cfg}")
 print(f'Config:\n{cfg.pretty_text}')
 
 
