@@ -20,7 +20,7 @@ First you will need a computer with GPU. You will wait for it for few minutes.
 # (this installation works for "adan" ifiniband)
 # NOTE: for running next step scripts (training the model), you can use the no interactive queue (without -I),
 #       e.g.: qsub -l select=1:ncpus=2:mem=8gb:ngpus=1:cl_adan=True -l walltime=23:59:59 -q gpu 02_metacentrum_train_screenshot_sample.sh
-qsub -I -l select=1:ncpus=2:mem=8gb:ngpus=1:cl_adan=True -l walltime=01:00:00 -q gpu
+qsub -I -l select=1:ncpus=2:mem=8gb:ngpus=1:scratch_local=10gb:cl_adan=True -l walltime=01:00:00 -q gpu
 ```
 
 Run these lines on recived computer with GPU in interactive mode.
@@ -83,15 +83,27 @@ qsub qsub_detectron2_tutorial_quickstart.sh
 ```
 
 Check the web if the task is running:
-https://metavo.metacentrum.cz/pbsmon2/user/mjirik
+https://metavo.metacentrum.cz/pbsmon2/person
 
 Check the logs are stored in `~/projects/tutorials/metacentrum/detectron2_quickstart/`
 with the suffix `*.o*` and `*.e*`
 
-The output files
+
+# Debugging
+
+It is easier to debug in interactive mode. Ask for interactive job. You will wait a while.
+
 ```bash
 
+# Interactive queue for 1 hour with 2 CPUs, 8 GB memory and 1 GPU
+# (this installation works for "adan" ifiniband)
+# NOTE: for running next step scripts (training the model), you can use the no interactive queue (without -I),
+#       e.g.: qsub -l select=1:ncpus=2:mem=8gb:ngpus=1:cl_adan=True -l walltime=23:59:59 -q gpu 02_metacentrum_train_screenshot_sample.sh
+qsub -I -l select=1:ncpus=2:mem=8gb:ngpus=1:scratch_local=10gb:cl_adan=True -l walltime=01:00:00 -q gpu
 ```
 
+Run your `.sh` script when your job is ready and you can write in the shell.
+```bash
+bash /storage/plzen1/home/$LOGNAME/projects/tutorials/metacentrum/detectron2_quickstart/qsub_detectron2_tutorial_quickstart.sh
+```
 
-and check the logs
