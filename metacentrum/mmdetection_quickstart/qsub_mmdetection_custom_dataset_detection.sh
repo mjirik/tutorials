@@ -47,8 +47,6 @@ echo "SCRATCHDIR=$SCRATCHDIR"
 echo "find SCRATCHDIR/data/orig/ :"
 find $SCRATCHDIR/data/orig/
 
-# spusteni aplikace - samotny vypocet
-
 # activate environment option 1: miniconda installed
 #module add cuda-10.1
 #module add conda-modules-py37
@@ -68,22 +66,20 @@ if [ ! -f $SCRATCHDIR/checkpoints/$CHECKPOINT_PTH ]; then
       -O $SCRATCHDIR/checkpoints/$CHECKPOINT_PTH
 fi
 
-
-
 #export PATH=/storage/plzen1/home/$LOGNAME/miniconda3/bin:$PATH
 #source activate mytorch
-
 
 # this is because of python click
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 
 
+# spusteni aplikace - samotny vypocet
 # Put your code here
-singularity exec -B $SCRATCHDIR:$SCRATCHDIR /auto/plzen4-ntis/projects/cv/CarnivoreID/carnivore_id\:v1.0.sif python  $PROJECTDIR/mmdetection_custom_dataset_detection.py > results.txt
+singularity exec -B $SCRATCHDIR:$SCRATCHDIR /auto/plzen4-ntis/projects/cv/CarnivoreID/carnivore_id\:v1.0.sif python  $PROJECTDIR/mmdetection_custom_dataset_detection.py
 
 # kopirovani vystupnich dat z vypocetnicho uzlu do domovskeho adresare,
 # pokud by pri kopirovani doslo k chybe, nebude adresar SCRATCH vymazan pro moznost rucniho vyzvednuti dat
-cp results.txt $OUTPUTDIR || export CLEAN_SCRATCH=false
 cp -r $SCRATCHDIR/data/processed/* $OUTPUTDIR || export CLEAN_SCRATCH=false
+#cp results.txt $OUTPUTDIR || export CLEAN_SCRATCH=false
 find $OUTPUTDIR
