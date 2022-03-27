@@ -20,21 +20,22 @@ from mmcv.ops import get_compiling_cuda_version, get_compiler_version
 logger.debug(get_compiling_cuda_version())
 logger.debug(get_compiler_version())
 from pprint import pprint, pformat
-
+from mmdet.datasets import build_dataset
+from mmdet.apis import train_detector
+from mmcv import Config
+from mmdet.apis import set_random_seed
 from pathlib import Path
+import os.path as osp
+import os
+import mmcv
+from mmcv.runner import load_checkpoint
+
+from mmdet.apis import inference_detector, show_result_pyplot
+from mmdet.models import build_detector
+
+
 mmdetection_path = Path(mmdet.__file__).parent.parent
 
-
-# import cv2
-# from google.colab.patches import cv2_imshow
-
-# import some common detectron2 utilities
-# from detectron2.engine import DefaultPredictor
-# from detectron2.config import get_cfg
-# from detectron2.utils.visualizer import Visualizer
-# from detectron2.data import MetadataCatalog, DatasetCatalog
-from pathlib import Path
-import os
 scratchdir = Path(os.getenv('SCRATCHDIR', "."))
 logname = Path(os.getenv('LOGNAME', "."))
 # from loguru import logger
@@ -46,13 +47,6 @@ logger.debug(f"outputdir={local_output_data_dir}")
 logger.debug(f"input_data_dir={local_input_data_dir}")
 logger.debug(f"input_data_dir exists={local_input_data_dir.exists()}")
 logger.debug(f'input_data_dir glob={str(list(local_input_data_dir.glob("**/*")))}')
-
-import mmcv
-from mmcv.runner import load_checkpoint
-
-from mmdet.apis import inference_detector, show_result_pyplot
-from mmdet.models import build_detector
-
 
 # Choose to use a config and initialize the detector
 config = mmdetection_path / 'configs/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_3x_coco.py'
@@ -93,10 +87,7 @@ model.show_result(img, result, out_file=local_output_data_dir / 'demo_output.jpg
 
 
 # My dataset training
-from mmcv import Config
 cfg = Config.fromfile(mmdetection_path / 'configs/faster_rcnn/faster_rcnn_r50_caffe_fpn_mstrain_1x_coco.py')
-
-from mmdet.apis import set_random_seed
 
 # Modify dataset type and path
 cfg.dataset_type = 'CocoDataset'
@@ -160,39 +151,34 @@ cfg.log_config.hooks = [
 
 logger.debug(f"cfg=\n{pformat(cfg)}")
 
-
-
-from mmdet.datasets import build_dataset
-from mmdet.models import build_detector
-from mmdet.apis import train_detector
-
-
 # Build dataset
 datasets = [build_dataset(cfg.data.train)]
 
 logger.debug(f"classes={datasets[0].CLASSES}")
-
 
 # Build the detector
 model = build_detector(cfg.model)
 # Add an attribute for visualization convenience
 model.CLASSES = datasets[0].CLASSES
 
-import os.path as osp
 
 # Create work_dir
 mmcv.mkdir_or_exist(osp.abspath(cfg.work_dir))
 train_detector(model, datasets, cfg, distributed=False, validate=True)
 
+#  = 'images/'
+filelist =  list((local_input_data_dir / cfg.data.test.img_prefix ).glob("*.jpg"))
+filelist.extend(list((local_input_data_dir / cfg.data.test.img_prefix ).glob("*.png")))
 
-img_fn = local_input_data_dir / 'data/images/10.jpg'
-img = mmcv.imread(img_fn)
+for img_fn in filelist:
 
-model.cfg = cfg
-result = inference_detector(model, img)
-# show_result_pyplot(model, img, result)
-model.show_result(img, result, out_file=local_output_data_dir / f'output_{img_fn.stem}.jpg')# save image with result
+    # img_fn = local_input_data_dir / '/images/10.jpg'
+    img = mmcv.imread(img_fn)
 
+    model.cfg = cfg
+    result = inference_detector(model, img)
+    # show_result_pyplot(model, img, result)
+    model.show_result(img, result, out_file=local_output_data_dir / f'pred_{img_fn.stem}.jpg')# save image with result
 
 # # print all files in input dir recursively to check everything
 logger.debug(str(list(Path(local_output_data_dir).glob("**/*"))))
