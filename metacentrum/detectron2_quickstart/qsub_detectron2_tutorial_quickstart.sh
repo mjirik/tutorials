@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb
+#PBS -l select=1:ncpus=1:ngpus=1:mem=10gb:scratch_local=10gb:cl_adan=True
 #PBS -l walltime=01:00:00 -q gpu
 
 # modify/delete the above given guidelines according to your job's needs
