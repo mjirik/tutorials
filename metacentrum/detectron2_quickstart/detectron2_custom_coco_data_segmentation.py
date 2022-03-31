@@ -21,6 +21,8 @@ scratchdir = os.getenv('SCRATCHDIR', ".")
 logname = os.getenv('LOGNAME', ".")
 from loguru import logger
 
+detectron2_path = Path(detectron2.__file__).parent.parent
+
 input_data_dir = Path(scratchdir) / 'data/orig/'
 outputdir = Path(scratchdir) / 'data/processed/'
 
@@ -61,7 +63,8 @@ from detectron2.config import get_cfg
 import os
 
 cfg = get_cfg()
-cfg.merge_from_file(f"/storage/plzen1/home/{logname}/projects/detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
+# cfg.merge_from_file(f"/storage/plzen1/home/{logname}/projects/detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
+cfg.merge_from_file(str(detectron2_path / "/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
 cfg.DATASETS.TRAIN = ("fruits_nuts",)
 cfg.DATASETS.TEST = ()   # no metrics implemented for this dataset
 cfg.DATALOADER.NUM_WORKERS = 2
