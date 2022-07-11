@@ -134,6 +134,8 @@ cfg.evaluation.interval = 12
 # We can set the checkpoint saving interval to reduce the storage cost
 cfg.checkpoint_config.interval = 12
 
+cfg.total_epochs = 24
+
 # Set seed thus the results are more reproducible
 cfg.seed = 0
 set_random_seed(0, deterministic=False)
