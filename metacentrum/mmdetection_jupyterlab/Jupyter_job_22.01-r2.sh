@@ -1,11 +1,11 @@
 #!/bin/bash
 #PBS -N JupyterLabJob
 #PBS -q gpu
-#PBS -l select=1:ncpus=4:mem=16gb:scratch_local=50gb:ngpus=1:cl_elmo3=False:cl_zia=False:cl_adan=True:cl_galdor=True
+#PBS -l select=1:ncpus=4:mem=16gb:scratch_local=50gb:ngpus=1:cl_elmo3=False:cl_adan=True:cl_galdor=True
 #PBS -l walltime=12:00:00
 #PBS -m ae
 # The 4 lines above are options for scheduling system: job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested, email notification will be sent when the job aborts (a) or ends (e)
-# Sometimes the you would recive strange email. Then maybe the problem is in cluster. Try other i.e. :cl_adan=True
+# Sometimes the you would recive strange email. Then maybe the problem is in cluster (zia or elmo). Try other i.e. :cl_adan=True
 
 echo ${PBS_O_LOGNAME:?This script must be run under PBS scheduling system, execute: qsub $0}
 
