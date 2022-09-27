@@ -8,9 +8,11 @@
 # Sometimes the you would recive strange email. Then maybe the problem is in cluster (zia or elmo). Try other i.e. :cl_adan=True or :cl_galdor=True
 
 echo ${PBS_O_LOGNAME:?This script must be run under PBS scheduling system, execute: qsub $0}
+
 # define variables
 # SING_IMAGE="/storage/plzen4-ntis/projects/cv/CarnivoreID/carnivore_id_v22_05.sif"
-SING_IMAGE="/storage/plzen1/home/mjirik/singularity_images/carnivore_id_v1.2.sif"
+# SING_IMAGE="/storage/plzen1/home/mjirik/singularity_images/carnivore_id_v1.2.sif"
+SING_IMAGE="/storage/plzen1/home/mjirik/singularity_images/carnivore_id_v22_05.sif"
 HOMEDIR=/storage/plzen1/home/$USER # substitute username and path to to your real username and path
 HOSTNAME=`hostname -f`
 JUPYTER_PORT="8888"
