@@ -17,7 +17,7 @@ git clone https://github.com/mjirik/tutorials.git
 Run the experiment
 ```bash
 cd ~/projects/tutorials/metacentrum/mmdetection_jupyterlab/
-qsub Jupyter_job_22.01-r2.sh
+qsub qsub_jupyter_job_22.01-r2.sh
 ```
 
 Check email for link to you jupyterlab. In first email there is an password.
