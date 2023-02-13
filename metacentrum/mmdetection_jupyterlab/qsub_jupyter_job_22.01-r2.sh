@@ -1,23 +1,24 @@
 #!/bin/bash
 #PBS -N JupyterLabJob
-#PBS -q gpu
-#PBS -l select=1:ncpus=4:mem=16gb:scratch_local=50gb:ngpus=1:cl_elmo3=False:cl_adan=True:cl_galdor=True
-#PBS -l walltime=12:00:00
+#PBS -l select=1:ncpus=4:mem=16gb:scratch_local=10gb:ngpus=1
+#PBS -l walltime=4:00:00 -q gpu@meta-pbs.metacentrum.cz
 #PBS -m ae
 # The 4 lines above are options for scheduling system: job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested, email notification will be sent when the job aborts (a) or ends (e)
-# Sometimes the you would recive strange email. Then maybe the problem is in cluster (zia or elmo). Try other i.e. :cl_adan=True
+# Sometimes the you would recive strange email. Then maybe the problem is in cluster (zia or elmo). Try other i.e. :cl_adan=True or :cl_galdor=True
 
 echo ${PBS_O_LOGNAME:?This script must be run under PBS scheduling system, execute: qsub $0}
 
 # define variables
-SING_IMAGE="/storage/plzen1/home/mjirik/singularity_images/carnivore_id_v1.2.sif"
+# SING_IMAGE="/storage/plzen1/home/mjirik/singularity_images/carnivore_id_v1.2.sif"
+# SING_IMAGE="/storage/plzen4-ntis/projects/cv/CarnivoreID/carnivore_id_v22_05.sif"
+SING_IMAGE="/storage/plzen1/home/mjirik/singularity_images/carnivore_id_v22_05.sif"
 HOMEDIR=/storage/plzen1/home/$USER # substitute username and path to to your real username and path
 HOSTNAME=`hostname -f`
 JUPYTER_PORT="8888"
 IMAGE_BASE=`basename $SING_IMAGE`
 export PYTHONUSERBASE=$HOMEDIR/.local-${IMAGE_BASE}
 
-mkdir -p ${PYTHONUSERBASE}/lib/python3.8/site-packages 
+mkdir -p ${PYTHONUSERBASE}/lib/python3.8/site-packages
 
 #find nearest free port to listen
 isfree=$(netstat -taln | grep $JUPYTER_PORT)
@@ -39,13 +40,13 @@ export SINGULARITYENV_PREPEND_PATH=$PYTHONUSERBASE/bin:$PATH
 
 
 # move into $HOME directory
-cd $HOMEDIR 
+cd $HOMEDIR
 if [ ! -f ./.jupyter/jupyter_notebook_config.json ]; then
    echo "jupyter passwd reset!"
    mkdir -p .jupyter/
    #here you can commem=nt randomly generated password and set your password
    pass=`dd if=/dev/urandom count=1 2> /dev/null | uuencode -m - | sed -ne 2p | cut -c-12` ; echo $pass
-   #pass="SecretPassWord" 
+   #pass="SecretPassWord"
    hash=`singularity exec $SING_IMAGE python -c "from notebook.auth import passwd ; hash = passwd('$pass') ; print(hash)" 2>/dev/null`
    cat > .jupyter/jupyter_notebook_config.json << EOJson
 {
@@ -61,14 +62,14 @@ fi
 
 # MAIL to user HOSTNAME
 # append a line to a file "jobs_info.txt" containing the ID of the job, the hostname of node it is run on and the path to a scratch directory
-# this information helps to find a scratch directory in case the job fails and you need to remove the scratch directory manually 
+# this information helps to find a scratch directory in case the job fails and you need to remove the scratch directory manually
 #echo "$PBS_JOBID is running on node `hostname -f` in a scratch directory $SCRATCHDIR" >> $DATADIR/jobs_info.txt
 
 EXECMAIL=`which mail`
 $EXECMAIL -s "JupyterLab job is running on $HOSTNAME:$JUPYTER_PORT" $PBS_O_LOGNAME << EOFmail
 Job with JupiterLab was started.
 
-Use URL  http://$HOSTNAME:$JUPYTER_PORT 
+Use URL  http://$HOSTNAME:$JUPYTER_PORT
 
 $PASS_MESSAGE
 
