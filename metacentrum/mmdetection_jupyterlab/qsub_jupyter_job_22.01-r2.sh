@@ -1,8 +1,9 @@
 #!/bin/bash
 #PBS -N JupyterLabJob
 #PBS -l select=1:ncpus=4:mem=16gb:scratch_local=10gb:ngpus=1
-#PBS -l walltime=14:00:00
+#PBS -l walltime=10:00:00
 #PBS -m ae
+#PBS -q gpu
 # The 4 lines above are options for scheduling system: job will run 1 hour at maximum, 1 machine with 4 processors + 4gb RAM memory + 10gb scratch memory are requested, email notification will be sent when the job aborts (a) or ends (e)
 # Sometimes the you would recive strange email. Then maybe the problem is in cluster (zia or elmo). Try other i.e. :cl_adan=True or :cl_galdor=True
 
