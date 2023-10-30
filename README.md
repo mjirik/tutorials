@@ -4,7 +4,7 @@ Tutorials
 
 # Presentations
 
-
+https://mjirik.github.io/tutorials/slides/ChatGPT-Whats_so_different.slides.html
 
 # Build the slides
 
