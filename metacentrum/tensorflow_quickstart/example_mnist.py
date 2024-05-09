@@ -13,6 +13,8 @@ model = tf.keras.models.Sequential([
   tf.keras.layers.Dense(10)
 ])
 
+
+
 predictions = model(x_train[:1]).numpy()
 
 print(predictions)
@@ -24,7 +26,10 @@ loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
 print(loss_fn)
 
 loss_fn(y_train[:1], predictions).numpy()
-
+model.compile(
+  # loss='categorical_crossentropy', 
+  loss_fn,
+  optimizer='adam', metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=5)
 
 model.evaluate(x_test,  y_test, verbose=2)
