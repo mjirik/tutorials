@@ -74,7 +74,7 @@ python -c "import torch;print(torch.cuda.is_available())"
 ```shell
 mkdir -p ~/projects
 cd ~/projects
-git clone git@github.com:mjirik/tutorials.git
+git clone https://github.com/mjirik/tutorials.git
 ```
 
 
