@@ -74,7 +74,7 @@ python -c "import tensorflow as tf;print(tf.config.list_physical_devices('GPU'))
 ```shell
 mkdir -p ~/projects
 cd ~/projects
-git clone git@github.com:mjirik/tutorials.git
+git clone https://github.com/mjirik/tutorials.git
 ```
 
 
