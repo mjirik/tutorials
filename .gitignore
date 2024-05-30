@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Metacentrum logs
+*.o[0-9]*
+*.e[0-9]*
+
