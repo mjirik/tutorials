@@ -50,7 +50,7 @@ chmod u+x ~/miniconda3/bin/python
 ```shell
 conda create -n mytf python
 conda activate mytf
-conda install tensorflow-gpu
+conda install tensorflow-gpu=2.4
 ```
 ## Check cuda with interactive task
 
