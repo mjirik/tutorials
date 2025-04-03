@@ -48,7 +48,7 @@ chmod u+x ~/miniconda3/bin/python
 ## Create the environment
 
 ```shell
-conda create -n mytf python
+conda create -n mytf python=3.9
 conda activate mytf
 conda install tensorflow-gpu=2.4
 ```
